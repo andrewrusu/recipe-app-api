@@ -1,8 +1,18 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+from model_mommy import mommy
+
 
 class ModelTests(TestCase):
+    def gen_number(self, _next=[7788480000]):
+        # use mutable arg as a sequence to avoid dupe numbers
+        value = '+1 {}'.format(_next[0])
+        _next[0] += 1
+        return value
+
+    def setUp(self):
+        mommy.generators.add('phonenumber_field.modelfields.PhoneNumberField', self.gen_number)
 
     def test_create_user_with_email_successful(self):
         """Test creating a new userwith an email is successful."""
@@ -40,3 +50,9 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_mommy(self):
+        user = mommy.make('core.User')
+        print("*" * 20)
+        print(user.__dict__)
+        print("*" * 20)
