@@ -10,9 +10,6 @@ before_script: pip install docker-compose
 script:
   - docker-compose run app sh -c "python manage.py test && flake8"
 
-before_install:
-  service postgresql stop
-
 env:
   global:
-  - PGPORT=5433 # Start travis instance of postgress with this port so local docker configuration will not conflict.
+    - PGPORT=5433 # Start travis instance of postgress with this port so local docker configuration will not conflict.
