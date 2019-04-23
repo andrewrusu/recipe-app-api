@@ -1,4 +1,4 @@
-language: python
+language: generic
 python:
   - "3.6"
 
@@ -12,7 +12,3 @@ script:
 
 addons:
   postgresql: "10"
-
-env:
-  global:
-    - PGPORT=5433 # Start travis instance of postgress with this port so local docker configuration will not conflict.
