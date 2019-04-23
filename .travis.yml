@@ -13,7 +13,6 @@ script:
 addons:
   apt:
     packages:
-      - postgresql-10
 
 env:
   global:
